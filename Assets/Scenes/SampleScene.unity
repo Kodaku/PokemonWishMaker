@@ -264,7 +264,7 @@ GameObject:
   - component: {fileID: 1130483335}
   - component: {fileID: 1130483334}
   m_Layer: 0
-  m_Name: Tilemap
+  m_Name: CaveTilemap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
