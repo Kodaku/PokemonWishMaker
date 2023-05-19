@@ -44,6 +44,9 @@ TagManager:
   - name: Ground
     uniqueID: 1911791415
     locked: 0
+  - name: Buildings
+    uniqueID: 2860733727
+    locked: 0
   - name: Player
     uniqueID: 1428943171
     locked: 0
