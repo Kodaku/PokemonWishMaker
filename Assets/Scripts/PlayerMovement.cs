@@ -11,38 +11,31 @@ public class PlayerMovement : MonoBehaviour
     Rigidbody2D myRb;
     Animator myAnimator;
     bool isRunning  = false;
+    bool isMoving;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         myRb = GetComponent<Rigidbody2D>();
         myAnimator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
-        // myAnimator.Update(Time.deltaTime);
         Walk();
         Run();
+        
+        if (moveInput.x != 0) moveInput.y = 0;
+
+        if (moveInput != Vector2.zero) {
+            myAnimator.SetFloat("moveX", moveInput.x);
+            myAnimator.SetFloat("moveY", moveInput.y);
+        }
+        myAnimator.SetBool("isWalking", isMoving);
+        myAnimator.SetBool("IsRunning", isRunning);
     }
 
     void Walk() {
-        myAnimator.SetBool("IsWalkingDown", false);
-        myAnimator.SetBool("IsWalkingUp", false);
-        myAnimator.SetBool("IsWalkingLeft", false);
-        myAnimator.SetBool("IsWalkingRight", false);
-        if (moveInput.x > 0) {
-            myAnimator.SetBool("IsWalkingRight", true);
-        }
-        else if(moveInput.x < 0) {
-            myAnimator.SetBool("IsWalkingLeft", true);
-        }
-        else if(moveInput.y > 0) {
-            myAnimator.SetBool("IsWalkingUp", true);
-        }
-        else if (moveInput.y < 0) {
-            myAnimator.SetBool("IsWalkingDown", true);
-        }
         if(!isRunning) {
             myRb.velocity = moveInput * walkSpeed;
         }
@@ -57,6 +50,7 @@ public class PlayerMovement : MonoBehaviour
 
     void OnMove(InputValue inputValue) {
         moveInput = inputValue.Get<Vector2>();
+        isMoving = moveInput.magnitude > 0;
     }
 
     void OnRun(InputValue inputValue) {
