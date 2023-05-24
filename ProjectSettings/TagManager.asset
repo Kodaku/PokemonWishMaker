@@ -44,11 +44,29 @@ TagManager:
   - name: Ground
     uniqueID: 1911791415
     locked: 0
+  - name: GroundOverGround
+    uniqueID: 4015307479
+    locked: 0
   - name: Buildings
     uniqueID: 2860733727
     locked: 0
   - name: Entrances
     uniqueID: 2812420639
+    locked: 0
+  - name: Objects
+    uniqueID: 4251321349
+    locked: 0
+  - name: Decorations
+    uniqueID: 68371407
+    locked: 0
+  - name: Decorations2
+    uniqueID: 358941231
+    locked: 0
+  - name: Decorations3
+    uniqueID: 214246519
+    locked: 0
+  - name: Decorations4
+    uniqueID: 2790147667
     locked: 0
   - name: Player
     uniqueID: 1428943171
