@@ -47,7 +47,7 @@ TagManager:
   - name: GroundOverGround
     uniqueID: 4015307479
     locked: 0
-  - name: Buildings
+  - name: PlayerOverBuildings
     uniqueID: 2860733727
     locked: 0
   - name: Entrances
@@ -55,6 +55,18 @@ TagManager:
     locked: 0
   - name: Objects
     uniqueID: 4251321349
+    locked: 0
+  - name: PlayerOverObjects
+    uniqueID: 909248931
+    locked: 0
+  - name: Player
+    uniqueID: 1428943171
+    locked: 0
+  - name: BuildingsOverPlayer
+    uniqueID: 2667032975
+    locked: 0
+  - name: ObjectsOverPlayer
+    uniqueID: 530755977
     locked: 0
   - name: Decorations
     uniqueID: 68371407
@@ -68,6 +80,6 @@ TagManager:
   - name: Decorations4
     uniqueID: 2790147667
     locked: 0
-  - name: Player
-    uniqueID: 1428943171
+  - name: Collision
+    uniqueID: 1976466049
     locked: 0
