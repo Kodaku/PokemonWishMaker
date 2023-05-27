@@ -8,5 +8,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/OutdoorTest.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/PokemonCenter.unity
+    guid: 82cb2ed840cc9c743b9c1a312b61b6af
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 2516c457bb41e3a4892c8be0f57c935d, type: 2}
