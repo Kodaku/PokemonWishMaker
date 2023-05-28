@@ -8495,6 +8495,14 @@ PrefabInstance:
       propertyPath: nextEntrance
       value: 
       objectReference: {fileID: 1861858209}
+    - target: {fileID: 5084651924852240031, guid: 1254ec1fca56bb742a0e0da49828034f, type: 3}
+      propertyPath: nextSceneEntrance
+      value: 
+      objectReference: {fileID: 2413799737127503032, guid: ac9e57a23e0c23941a14a8adfe1d1d2f, type: 3}
+    - target: {fileID: 5084651924852240031, guid: 1254ec1fca56bb742a0e0da49828034f, type: 3}
+      propertyPath: thisSceneEntrance
+      value: 
+      objectReference: {fileID: 5314269637888330253, guid: 162284a9225e80f4a89fb6b2eb78dc2c, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1254ec1fca56bb742a0e0da49828034f, type: 3}
 --- !u!1001 &5314269637368871340
