@@ -22,17 +22,19 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Walk();
-        Run();
-        
-        if (moveInput.x != 0) moveInput.y = 0;
+        if (!MainMenuUI.IsGamePaused) {
+            Walk();
+            Run();
+            
+            if (moveInput.x != 0) moveInput.y = 0;
 
-        if (moveInput != Vector2.zero) {
-            myAnimator.SetFloat("moveX", moveInput.x);
-            myAnimator.SetFloat("moveY", moveInput.y);
+            if (moveInput != Vector2.zero) {
+                myAnimator.SetFloat("moveX", moveInput.x);
+                myAnimator.SetFloat("moveY", moveInput.y);
+            }
+            myAnimator.SetBool("isWalking", isMoving);
+            myAnimator.SetBool("IsRunning", isRunning);
         }
-        myAnimator.SetBool("isWalking", isMoving);
-        myAnimator.SetBool("IsRunning", isRunning);
     }
 
     void Walk() {

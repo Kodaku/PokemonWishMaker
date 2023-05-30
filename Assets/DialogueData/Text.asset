@@ -19,8 +19,4 @@ MonoBehaviour:
   - 'Francone
 
     Marione'
-  responses:
-  - responseText: Yes
-    dialogueObject: {fileID: 11400000, guid: 3b4fa7a2afe8a3f4088ef2998e6207ea, type: 2}
-  - responseText: No
-    dialogueObject: {fileID: 11400000, guid: b918c84bf1fcadc46b8c08dcaccbb593, type: 2}
+  responses: []
