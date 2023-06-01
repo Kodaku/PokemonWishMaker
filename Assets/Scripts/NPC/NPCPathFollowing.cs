@@ -46,6 +46,8 @@ public class NPCPathFollowing : MonoBehaviour
         moveDirection.x = ApproximateValue(moveDirection.x);
         moveDirection.y = ApproximateValue(moveDirection.y);
 
+        Debug.Log(moveDirection);
+
         if (moveDirection.x != 0) moveDirection.y = 0;
 
         if (moveDirection.y != 0) moveDirection.x = 0;
