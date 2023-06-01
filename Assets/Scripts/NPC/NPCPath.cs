@@ -6,4 +6,6 @@ using UnityEngine;
 public class NPCPath
 {
     [SerializeField] GameObject[] nodes;
+
+    public GameObject[] Nodes => nodes;
 }
