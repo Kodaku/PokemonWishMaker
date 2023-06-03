@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class NPCPathFollowing : MonoBehaviour
 {
-    [SerializeField] NPCPathType pathType;
     [SerializeField] NPCPath npcPath;
     [SerializeField] float moveSpeed = 3.0f;
-    private int nodeIndex;
-    private GameObject currentNode;
+    [SerializeField] bool isStatic = false;
+    private Vector2 currentDirection;
     private Animator myAnimator;
     private Rigidbody2D myRb;
     private bool isWalking = true;
+    private bool isWaiting = false;
 
     private void Awake() {
         myAnimator = GetComponent<Animator>();
@@ -21,59 +21,44 @@ public class NPCPathFollowing : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        nodeIndex = 0;
-        currentNode = npcPath.Nodes[nodeIndex];
-        myAnimator.SetBool("IsWalking", true);
-        isWalking = true;
+        npcPath.Initialize();
+        isWalking = !isStatic;
+        myAnimator.SetBool("IsWalking", isWalking);
     }
 
-    private float ApproximateValue(float value) {
-        if (value >= 0.5f) {
-            return 1.0f;
-        } else if((value < 0.5f && value > 0.0f) || (value > -0.5f && value < 0.0f)) {
-            return 0.0f;
-        } else if(value < -0.5f) {
-            return -1.0f;
-        }
-        return value;
-    }
-
+    
     // Update is called once per frame
     void Update()
     {
-        Vector2 moveDirection = Walk();
-        
-        moveDirection.x = ApproximateValue(moveDirection.x);
-        moveDirection.y = ApproximateValue(moveDirection.y);
+        Walk();
 
-        Debug.Log(moveDirection);
-
-        if (moveDirection.x != 0) moveDirection.y = 0;
-
-        if (moveDirection.y != 0) moveDirection.x = 0;
-
-        if (isWalking) {
-            myRb.velocity = moveSpeed * moveDirection;
+        if (isWalking && !isStatic) {
+            myRb.velocity = moveSpeed * currentDirection;
         }
         else {
             myRb.velocity = Vector2.zero;
         }
-        myAnimator.SetFloat("moveX", moveDirection.x);
-        myAnimator.SetFloat("moveY", moveDirection.y);
+        myAnimator.SetFloat("moveX", currentDirection.x);
+        myAnimator.SetFloat("moveY", currentDirection.y);
     }
 
-    private Vector2 Walk() {
-        float step = moveSpeed * Time.deltaTime;
-        // transform.position = Vector3.MoveTowards(transform.position, currentNode.transform.position, step);
-        if (Vector3.Distance(transform.position, currentNode.transform.position) < 0.1f) {
-            nodeIndex++;
-            if (pathType == NPCPathType.CIRCULAR_LOOPING) {
-                nodeIndex = nodeIndex % npcPath.Nodes.Length;
-            }
-            currentNode = npcPath.Nodes[nodeIndex];
+    private void Walk() {
+        GameObject currentNode = npcPath.CurrentNode;
+        if (Vector3.Distance(transform.position, currentNode.transform.position) < 0.1f && !isStatic) {
+            npcPath.NextNodeIndex();
+            currentDirection = npcPath.GetCurrentDirection();
         }
-        Vector2 moveDirection = (currentNode.transform.position - transform.position).normalized;
-        return moveDirection;
+        if (isStatic && !isWaiting) {
+            StartCoroutine(WaitAndMove());
+        }
+    }
+
+    private IEnumerator WaitAndMove() {
+        isWaiting = true;
+        yield return new WaitForSeconds(Random.Range(1, 2));
+        npcPath.NextNodeIndex();
+        currentDirection = npcPath.GetCurrentDirection();
+        isWaiting = false;
     }
 
     private void OnCollisionEnter2D(Collision2D other) {
@@ -85,8 +70,8 @@ public class NPCPathFollowing : MonoBehaviour
 
     private void OnCollisionExit2D(Collision2D other) {
         if (other.gameObject.tag == "Player") {
-            myAnimator.SetBool("IsWalking", true);
-            isWalking = true;
+            isWalking = !isStatic;
+            myAnimator.SetBool("IsWalking", isWalking);
         }
     }
 }
