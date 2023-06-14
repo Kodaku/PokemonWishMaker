@@ -14,5 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nodes:
   - uniqueID: 
-    text: 
+    text: ssssss
     children: []
+    position:
+      serializedVersion: 2
+      x: 200
+      y: 4.57
+      width: 107.9
+      height: 61.45
