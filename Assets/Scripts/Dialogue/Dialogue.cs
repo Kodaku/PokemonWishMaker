@@ -9,12 +9,30 @@ namespace Pokemon.Dialogue
     {
         [SerializeField] List<DialogueNode> nodes = new List<DialogueNode>();
 
+        Dictionary<string, DialogueNode> nodeLookup = new Dictionary<string, DialogueNode>();
+
         public IEnumerable<DialogueNode> GetAllNodes() {
             return nodes;
         }
 
+        public IEnumerable<DialogueNode> GetAllChildren(DialogueNode parentNode) {
+            foreach(string childID in parentNode.children) {
+                if (nodeLookup.ContainsKey(childID)) {
+                    yield return nodeLookup[childID];
+                }
+            }
+        }
+
+        private void OnValidate() {
+            nodeLookup.Clear();
+            foreach(DialogueNode dialogueNode in nodes) {
+                nodeLookup.Add(dialogueNode.uniqueID, dialogueNode);
+            }
+        }
+
 #if UNITY_EDITOR
         private void Awake() {
+            OnValidate();
             if (nodes.Count == 0) {
                 nodes.Add(new DialogueNode());
             }

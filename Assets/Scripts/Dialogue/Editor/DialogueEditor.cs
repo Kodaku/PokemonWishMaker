@@ -10,6 +10,8 @@ namespace Pokemon.Dialogue.Editor
     {
         Dialogue selectedDialogue = null;
         GUIStyle nodeStyle = null;
+        DialogueNode draggingNode = null;
+        Vector2 draggingOffset;
 
         [MenuItem("Window/DialogueEditor")]
         public static void ShowEditorWindow() {
@@ -48,6 +50,7 @@ namespace Pokemon.Dialogue.Editor
                 EditorGUILayout.LabelField("No dialogue selected");
             }
             else {
+                ProcessEvent();
                 foreach(DialogueNode dialogueNode in selectedDialogue.GetAllNodes())
                 {
                     OnGUINode(dialogueNode);
@@ -55,9 +58,36 @@ namespace Pokemon.Dialogue.Editor
             }
         }
 
+        private void ProcessEvent() {
+            if (Event.current.type == EventType.MouseDown && draggingNode == null) {
+                draggingNode = GetNodeAtPoint(Event.current.mousePosition);
+                if (draggingNode != null) {
+                    draggingOffset =  draggingNode.rect.position - Event.current.mousePosition;
+                }
+            }
+            else if(Event.current.type == EventType.MouseUp && draggingNode != null) {
+                draggingNode = null;
+            }
+            else if(Event.current.type == EventType.MouseDrag && draggingNode != null) {
+                Undo.RecordObject(selectedDialogue, "Moved dialogue");
+                draggingNode.rect.position = Event.current.mousePosition + draggingOffset;
+                GUI.changed = true;
+            }
+        }
+
+        private DialogueNode GetNodeAtPoint(Vector2 point) {
+            DialogueNode foundNode = null;
+            foreach(DialogueNode dialogueNode in selectedDialogue.GetAllNodes()) {
+                if (dialogueNode.rect.Contains(point)) {
+                    foundNode = dialogueNode;
+                }
+            }
+            return foundNode;
+        }
+
         private void OnGUINode(DialogueNode dialogueNode)
         {
-            GUILayout.BeginArea(dialogueNode.position, nodeStyle);
+            GUILayout.BeginArea(dialogueNode.rect, nodeStyle);
             EditorGUI.BeginChangeCheck();
             EditorGUILayout.LabelField("Node: ", EditorStyles.whiteLabel);
             string newText = EditorGUILayout.TextField(dialogueNode.text);
@@ -68,6 +98,10 @@ namespace Pokemon.Dialogue.Editor
                 Undo.RecordObject(selectedDialogue, "Update dialogue text");
                 dialogueNode.text = newText;
                 dialogueNode.uniqueID = newUniqueID;
+            }
+
+            foreach(DialogueNode childNode in selectedDialogue.GetAllChildren(dialogueNode)) {
+                EditorGUILayout.LabelField(childNode.text);
             }
 
             GUILayout.EndArea();
