@@ -13,20 +13,24 @@ MonoBehaviour:
   m_Name: New Dialogue
   m_EditorClassIdentifier: 
   nodes:
-  - uniqueID: q
-    text: vfvvffff
-    children: []
-  - uniqueID: a
-    text: Helloffff
-    children:
-    - b
-    - c
-  - uniqueID: b
-    text: Hello, yourselfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
-    children: []
-  - uniqueID: c
-    text: Go Away!
-    children: []
-  - uniqueID: hg
-    text: vxxcv
-    children: []
+  - {fileID: 7539040869310534148}
+--- !u!114 &7539040869310534148
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fb50f0055ef1894aa314ad24a7679f8, type: 3}
+  m_Name: df9366e6-37b3-4269-8b4b-f94ba19726a3
+  m_EditorClassIdentifier: 
+  text: 
+  children: []
+  rect:
+    serializedVersion: 2
+    x: 137
+    y: 278
+    width: 200
+    height: 100

@@ -1,11 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 
 namespace Pokemon.Dialogue
 {
     [CreateAssetMenu(fileName = "New Dialogue", menuName = "PokemonSO/Dialogue", order = 0)]
-    public class Dialogue : ScriptableObject
+    public class Dialogue : ScriptableObject, ISerializationCallbackReceiver
     {
         [SerializeField] List<DialogueNode> nodes = new List<DialogueNode>();
 
@@ -26,14 +27,17 @@ namespace Pokemon.Dialogue
         private void OnValidate() {
             nodeLookup.Clear();
             foreach(DialogueNode dialogueNode in nodes) {
-                nodeLookup.Add(dialogueNode.uniqueID, dialogueNode);
+                nodeLookup.Add(dialogueNode.name, dialogueNode);
             }
         }
 
         public void CreateNode(DialogueNode parent) {
-            DialogueNode newNode = new DialogueNode();
-            newNode.uniqueID = System.Guid.NewGuid().ToString();
-            parent.children.Add(newNode.uniqueID);
+            DialogueNode newNode = CreateInstance<DialogueNode>();
+            newNode.name = System.Guid.NewGuid().ToString();
+            UnityEditor.Undo.RegisterCreatedObjectUndo(newNode, "Created new node: ");
+            if (parent != null) {
+                parent.children.Add(newNode.name);
+            }
             nodes.Add(newNode);
             OnValidate();
         }
@@ -43,24 +47,39 @@ namespace Pokemon.Dialogue
             nodes.Remove(nodeToDelete);
             OnValidate();
             CleanDanglingChildren(nodeToDelete);
+            UnityEditor.Undo.DestroyObjectImmediate(nodeToDelete);
         }
 
         private void CleanDanglingChildren(DialogueNode nodeToDelete)
         {
             foreach (DialogueNode node in GetAllNodes())
             {
-                node.children.Remove(nodeToDelete.uniqueID);
+                node.children.Remove(nodeToDelete.name);
             }
+        }
+
+        public void OnBeforeSerialize()
+        {
+            if (nodes.Count == 0) {
+                CreateNode(null);
+            }
+            if (AssetDatabase.GetAssetPath(this) != ""){
+                foreach(DialogueNode node in GetAllNodes()) {
+                    if (AssetDatabase.GetAssetPath(node) == "") {
+                        AssetDatabase.AddObjectToAsset(node, this);
+                    }
+                }
+            }
+        }
+
+        public void OnAfterDeserialize()
+        {
+            
         }
 
 #if UNITY_EDITOR
         private void Awake() {
             OnValidate();
-            if (nodes.Count == 0) {
-                DialogueNode rootNode = new DialogueNode();
-                rootNode.uniqueID = System.Guid.NewGuid().ToString();
-                nodes.Add(rootNode);
-            }
         }
 #endif
     }

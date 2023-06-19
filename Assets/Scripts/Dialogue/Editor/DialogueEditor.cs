@@ -27,6 +27,8 @@ namespace Pokemon.Dialogue.Editor
         bool draggingCanvas = false;
         [NonSerialized]
         Vector2 draggingCanvasOffset;
+        const float canvasSize = 4000;
+        const float backgroundSize = 50;
 
         [MenuItem("Window/DialogueEditor")]
         public static void ShowEditorWindow() {
@@ -69,7 +71,11 @@ namespace Pokemon.Dialogue.Editor
 
                 scrollPosition = EditorGUILayout.BeginScrollView(scrollPosition);
                 // Debug.Log(scrollPosition);
-                GUILayoutUtility.GetRect(4000, 4000);
+                Rect canvas = GUILayoutUtility.GetRect(canvasSize, canvasSize);
+
+                Texture2D backgroundTex = Resources.Load("background") as Texture2D;
+                Rect texCoords = new Rect(0, 0, canvasSize / backgroundSize, canvasSize / backgroundSize);
+                GUI.DrawTextureWithTexCoords(canvas, backgroundTex, texCoords);
 
                 foreach(DialogueNode dialogueNode in selectedDialogue.GetAllNodes()) {
                     DrawConnections(dialogueNode);
@@ -114,10 +120,12 @@ namespace Pokemon.Dialogue.Editor
                 draggingNode = GetNodeAtPoint(Event.current.mousePosition + scrollPosition);
                 if (draggingNode != null) {
                     draggingOffset =  draggingNode.rect.position - Event.current.mousePosition;
+                    Selection.activeObject = draggingNode;
                 }
                 else {
                     draggingCanvas = true;
                     draggingCanvasOffset = Event.current.mousePosition + scrollPosition;
+                    Selection.activeObject = selectedDialogue;
                 }
             }
             else if(Event.current.type == EventType.MouseDrag && draggingNode != null) {
@@ -195,10 +203,10 @@ namespace Pokemon.Dialogue.Editor
                     linkingParentNode = null;
                 }
             }
-            else if(linkingParentNode.children.Contains(dialogueNode.uniqueID)) {
+            else if(linkingParentNode.children.Contains(dialogueNode.name)) {
                 if (GUILayout.Button("unlink")) {
                     Undo.RecordObject(selectedDialogue, "Remove dialogue link");
-                    linkingParentNode.children.Remove(dialogueNode.uniqueID);
+                    linkingParentNode.children.Remove(dialogueNode.name);
                     linkingParentNode = null;
                 }
             }
@@ -206,7 +214,7 @@ namespace Pokemon.Dialogue.Editor
                 if (GUILayout.Button("child"))
                 {
                     Undo.RecordObject(selectedDialogue, "Add dialogue link");
-                    linkingParentNode.children.Add(dialogueNode.uniqueID);
+                    linkingParentNode.children.Add(dialogueNode.name);
                     linkingParentNode = null;
                 }
             }
