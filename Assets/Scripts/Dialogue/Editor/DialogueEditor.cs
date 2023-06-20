@@ -13,6 +13,8 @@ namespace Pokemon.Dialogue.Editor
         [NonSerialized]
         GUIStyle nodeStyle = null;
         [NonSerialized]
+        GUIStyle playerNodeStyle = null;
+        [NonSerialized]
         DialogueNode draggingNode = null;
         [NonSerialized]
         Vector2 draggingOffset;
@@ -47,11 +49,18 @@ namespace Pokemon.Dialogue.Editor
 
         private void OnEnable() {
             Selection.selectionChanged += OnSelectionChanged;
+
             nodeStyle = new GUIStyle();
             nodeStyle.normal.background = EditorGUIUtility.Load("node0") as Texture2D;
             nodeStyle.normal.textColor = Color.white;
             nodeStyle.padding = new RectOffset(20, 20, 20, 20);
             nodeStyle.border = new RectOffset(12, 12, 12, 12);
+
+            playerNodeStyle = new GUIStyle();
+            playerNodeStyle.normal.background = EditorGUIUtility.Load("node1") as Texture2D;
+            playerNodeStyle.normal.textColor = Color.white;
+            playerNodeStyle.padding = new RectOffset(20, 20, 20, 20);
+            playerNodeStyle.border = new RectOffset(12, 12, 12, 12);
         }
 
         private void OnSelectionChanged() {
@@ -88,12 +97,10 @@ namespace Pokemon.Dialogue.Editor
                 EditorGUILayout.EndScrollView();
 
                 if(creatingNode != null) {
-                    Undo.RecordObject(selectedDialogue, "Added dialogue node");
                     selectedDialogue.CreateNode(creatingNode);
                     creatingNode = null;
                 }
                 if(deletingNode != null) {
-                    Undo.RecordObject(selectedDialogue, "Deleted dialogue node");
                     selectedDialogue.DeleteNode(deletingNode);
                     deletingNode = null;
                 }
@@ -101,9 +108,9 @@ namespace Pokemon.Dialogue.Editor
         }
 
         private void DrawConnections(DialogueNode dialogueNode) {
-            Vector3 startPosition  = new Vector2(dialogueNode.rect.xMax, dialogueNode.rect.center.y);
+            Vector3 startPosition  = new Vector2(dialogueNode.Rect.xMax, dialogueNode.Rect.center.y);
             foreach(DialogueNode childNode in selectedDialogue.GetAllChildren(dialogueNode)) {
-                Vector3 endPosition = new Vector2(childNode.rect.xMin, childNode.rect.center.y);
+                Vector3 endPosition = new Vector2(childNode.Rect.xMin, childNode.Rect.center.y);
                 Vector3 controlPointOffset = endPosition - startPosition;
                 controlPointOffset.y = 0;
                 controlPointOffset.x *= 0.8f;
@@ -119,7 +126,7 @@ namespace Pokemon.Dialogue.Editor
             if (Event.current.type == EventType.MouseDown && draggingNode == null) {
                 draggingNode = GetNodeAtPoint(Event.current.mousePosition + scrollPosition);
                 if (draggingNode != null) {
-                    draggingOffset =  draggingNode.rect.position - Event.current.mousePosition;
+                    draggingOffset =  draggingNode.Rect.position - Event.current.mousePosition;
                     Selection.activeObject = draggingNode;
                 }
                 else {
@@ -129,8 +136,10 @@ namespace Pokemon.Dialogue.Editor
                 }
             }
             else if(Event.current.type == EventType.MouseDrag && draggingNode != null) {
-                Undo.RecordObject(selectedDialogue, "Moved dialogue");
-                draggingNode.rect.position = Event.current.mousePosition + draggingOffset;
+                Rect currentRect = draggingNode.Rect;
+                currentRect.position = Event.current.mousePosition + draggingOffset;
+
+                draggingNode.SetRect(currentRect);
                 
                 GUI.changed = true;
             }
@@ -150,7 +159,7 @@ namespace Pokemon.Dialogue.Editor
         private DialogueNode GetNodeAtPoint(Vector2 point) {
             DialogueNode foundNode = null;
             foreach(DialogueNode dialogueNode in selectedDialogue.GetAllNodes()) {
-                if (dialogueNode.rect.Contains(point)) {
+                if (dialogueNode.Rect.Contains(point)) {
                     foundNode = dialogueNode;
                 }
             }
@@ -159,15 +168,14 @@ namespace Pokemon.Dialogue.Editor
 
         private void DrawNode(DialogueNode dialogueNode)
         {
-            GUILayout.BeginArea(dialogueNode.rect, nodeStyle);
-            EditorGUI.BeginChangeCheck();
-            string newText = EditorGUILayout.TextField(dialogueNode.text);
-            // If any fiield has changed
-            if (EditorGUI.EndChangeCheck())
-            {
-                Undo.RecordObject(selectedDialogue, "Update dialogue text");
-                dialogueNode.text = newText;
+            GUIStyle style = nodeStyle;
+            if (dialogueNode.IsPlayerSpeaking) {
+                style = playerNodeStyle;
             }
+            GUILayout.BeginArea(dialogueNode.Rect, style);
+            
+            string newText = EditorGUILayout.TextField(dialogueNode.Text);
+            dialogueNode.SetText(newText);
 
             GUILayout.BeginHorizontal();
 
@@ -203,18 +211,17 @@ namespace Pokemon.Dialogue.Editor
                     linkingParentNode = null;
                 }
             }
-            else if(linkingParentNode.children.Contains(dialogueNode.name)) {
+            else if(linkingParentNode.Children.Contains(dialogueNode.name)) {
                 if (GUILayout.Button("unlink")) {
-                    Undo.RecordObject(selectedDialogue, "Remove dialogue link");
-                    linkingParentNode.children.Remove(dialogueNode.name);
+                    
+                    linkingParentNode.RemoveChild(dialogueNode.name);
                     linkingParentNode = null;
                 }
             }
             else {
                 if (GUILayout.Button("child"))
                 {
-                    Undo.RecordObject(selectedDialogue, "Add dialogue link");
-                    linkingParentNode.children.Add(dialogueNode.name);
+                    linkingParentNode.AddChild(dialogueNode.name);
                     linkingParentNode = null;
                 }
             }

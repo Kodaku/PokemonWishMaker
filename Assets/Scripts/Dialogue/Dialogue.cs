@@ -9,6 +9,7 @@ namespace Pokemon.Dialogue
     public class Dialogue : ScriptableObject, ISerializationCallbackReceiver
     {
         [SerializeField] List<DialogueNode> nodes = new List<DialogueNode>();
+        [SerializeField] Vector2 newNodeOffset = new Vector2(250, 0);
 
         Dictionary<string, DialogueNode> nodeLookup = new Dictionary<string, DialogueNode>();
 
@@ -17,7 +18,7 @@ namespace Pokemon.Dialogue
         }
 
         public IEnumerable<DialogueNode> GetAllChildren(DialogueNode parentNode) {
-            foreach(string childID in parentNode.children) {
+            foreach(string childID in parentNode.Children) {
                 if (nodeLookup.ContainsKey(childID)) {
                     yield return nodeLookup[childID];
                 }
@@ -30,38 +31,60 @@ namespace Pokemon.Dialogue
                 nodeLookup.Add(dialogueNode.name, dialogueNode);
             }
         }
-
-        public void CreateNode(DialogueNode parent) {
-            DialogueNode newNode = CreateInstance<DialogueNode>();
-            newNode.name = System.Guid.NewGuid().ToString();
-            UnityEditor.Undo.RegisterCreatedObjectUndo(newNode, "Created new node: ");
-            if (parent != null) {
-                parent.children.Add(newNode.name);
-            }
-            nodes.Add(newNode);
-            OnValidate();
+#if UNITY_EDITOR
+        public void CreateNode(DialogueNode parent)
+        {
+            DialogueNode newNode = MakeNode(parent);
+            Undo.RegisterCreatedObjectUndo(newNode, "Created new node: " + newNode.name);
+            Undo.RecordObject(this, "Added Dialogue node");
+            AddNode(newNode);
         }
 
         public void DeleteNode(DialogueNode nodeToDelete)
         {
+            Undo.RecordObject(this, "Deleted dialogue node");
             nodes.Remove(nodeToDelete);
             OnValidate();
             CleanDanglingChildren(nodeToDelete);
-            UnityEditor.Undo.DestroyObjectImmediate(nodeToDelete);
+            Undo.DestroyObjectImmediate(nodeToDelete);
         }
 
         private void CleanDanglingChildren(DialogueNode nodeToDelete)
         {
             foreach (DialogueNode node in GetAllNodes())
             {
-                node.children.Remove(nodeToDelete.name);
+                node.RemoveChild(nodeToDelete.name);
             }
         }
 
+        private void AddNode(DialogueNode newNode)
+        {
+            nodes.Add(newNode);
+            OnValidate();
+        }
+
+        private DialogueNode MakeNode(DialogueNode parent)
+        {
+            DialogueNode newNode = CreateInstance<DialogueNode>();
+            newNode.name = System.Guid.NewGuid().ToString();
+            if (parent != null)
+            {
+                parent.AddChild(newNode.name);
+                newNode.SetPlayerSpeaking(!parent.IsPlayerSpeaking);
+                Rect newRect = parent.Rect;
+                newRect.position += newNodeOffset;
+                newNode.SetRect(newRect);
+            }
+
+            return newNode;
+        }
+#endif
         public void OnBeforeSerialize()
         {
+#if UNITY_EDITOR
             if (nodes.Count == 0) {
-                CreateNode(null);
+                DialogueNode newNode = MakeNode(null);
+                AddNode(newNode);
             }
             if (AssetDatabase.GetAssetPath(this) != ""){
                 foreach(DialogueNode node in GetAllNodes()) {
@@ -70,17 +93,12 @@ namespace Pokemon.Dialogue
                     }
                 }
             }
+#endif
         }
 
         public void OnAfterDeserialize()
         {
             
         }
-
-#if UNITY_EDITOR
-        private void Awake() {
-            OnValidate();
-        }
-#endif
     }
 }
