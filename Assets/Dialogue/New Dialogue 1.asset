@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nodes:
   - {fileID: 1035632378948943979}
+  newNodeOffset: {x: 250, y: 0}
 --- !u!114 &1035632378948943979
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26,11 +27,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fb50f0055ef1894aa314ad24a7679f8, type: 3}
   m_Name: 27ec4c8d-8a78-45a5-a975-9134f79afd0e
   m_EditorClassIdentifier: 
+  isPlayerSpeaking: 0
   text: 
   children: []
   rect:
     serializedVersion: 2
-    x: 0
-    y: 0
+    x: 76
+    y: 209
     width: 200
     height: 100

@@ -17,8 +17,8 @@ MonoBehaviour:
   children: []
   rect:
     serializedVersion: 2
-    x: 1546
-    y: 373
+    x: 1488
+    y: 289
     width: 200
     height: 100
 --- !u!114 &-3777733950840535319
@@ -39,8 +39,8 @@ MonoBehaviour:
   - c5ee49b2-31f0-46e1-9829-dd8e5034bef8
   rect:
     serializedVersion: 2
-    x: 1046
-    y: 373
+    x: 856
+    y: 289
     width: 200
     height: 100
 --- !u!114 &-671474342722461119
@@ -61,8 +61,8 @@ MonoBehaviour:
   - f83d0ff3-618e-43b2-bc1b-f02ea2629f79
   rect:
     serializedVersion: 2
-    x: 1296
-    y: 373
+    x: 1205
+    y: 288
     width: 200
     height: 100
 --- !u!114 &11400000
@@ -102,8 +102,8 @@ MonoBehaviour:
   - 24a71669-d163-4f9b-93e1-516edea9c729
   rect:
     serializedVersion: 2
-    x: 716
-    y: 176
+    x: 495
+    y: 287
     width: 200
     height: 100
 --- !u!114 &7539040869310534148
