@@ -25,6 +25,10 @@ namespace Pokemon.Dialogue
             }
         }
 
+        public DialogueNode GetRootNode() {
+            return nodes[0];
+        }
+
         private void OnValidate() {
             nodeLookup.Clear();
             foreach(DialogueNode dialogueNode in nodes) {

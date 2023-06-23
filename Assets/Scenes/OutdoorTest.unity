@@ -24953,9 +24953,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a42c465ee1569d4cacbba0e811fcbd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogueBox: {fileID: 1343779205}
-  textLabel: {fileID: 78459307}
-  testDialogue: {fileID: 11400000, guid: 69e11c7a76b711c47b093d1b12b0316e, type: 2}
 --- !u!114 &1373839442
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24968,7 +24965,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a368c950395267b45bac0d3f88465c6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  typeWriterSpeed: 20
 --- !u!114 &1373839443
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24981,9 +24977,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 693ac622671d46b4891a64481555e29e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  responseBox: {fileID: 930983245}
-  responseButtonTemplate: {fileID: 1723554333}
-  responseContainer: {fileID: 2045096134}
 --- !u!114 &1373839444
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28104,14 +28097,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4068526769556325595, guid: 213d5d0d345090648a81c55b0c0975a6, type: 3}
-      propertyPath: persistenceSO
+    - target: {fileID: 6910078423741152951, guid: 213d5d0d345090648a81c55b0c0975a6, type: 3}
+      propertyPath: currentDialogue
       value: 
-      objectReference: {fileID: 11400000, guid: 98cde8c3b836d9245a0417d0801bcc83, type: 2}
-    - target: {fileID: 4068526769556325597, guid: 213d5d0d345090648a81c55b0c0975a6, type: 3}
-      propertyPath: m_BodyType
-      value: 0
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 11400000, guid: 734121471018c2c488cda827d1299e46, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 213d5d0d345090648a81c55b0c0975a6, type: 3}
 --- !u!1 &4068526768426384807 stripped
@@ -28507,7 +28496,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9170607698111563509, guid: b789ab56bddebba4f89a16ac0c0fc68b, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -27.499954
+      value: -27.5
       objectReference: {fileID: 0}
     - target: {fileID: 9170607698111563509, guid: b789ab56bddebba4f89a16ac0c0fc68b, type: 3}
       propertyPath: m_AnchoredPosition.y

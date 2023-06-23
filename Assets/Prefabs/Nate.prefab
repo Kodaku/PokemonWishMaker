@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 4068526769556325597}
   - component: {fileID: 4068526769556325594}
   - component: {fileID: 4068526769556325595}
+  - component: {fileID: 6910078423741152951}
   m_Layer: 6
   m_Name: Nate
   m_TagString: Player
@@ -97,7 +98,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1428943171
-  m_SortingLayer: 7
+  m_SortingLayer: 8
   m_SortingOrder: 0
   m_Sprite: {fileID: 1546979443, guid: 8a3d1d7926bb8d54dbf9098dbf6f3981, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -191,3 +192,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   walkSpeed: 3
   runSpeed: 8
+--- !u!114 &6910078423741152951
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4068526769556325584}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1185404556cf46a4498f1d1d63022bf3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentDialogue: {fileID: 11400000, guid: d4b4a8c7d7ebaed4c96f46a9fa0e07e7, type: 2}
