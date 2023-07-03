@@ -2,21 +2,34 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using System;
 
 namespace Pokemon.Dialogue {
     public class PlayerConversant : MonoBehaviour
     {
-        [SerializeField] Dialogue currentDialogue;
+        [SerializeField] Dialogue testDialogue;
+        Dialogue currentDialogue;
         DialogueNode currentNode = null;
+        bool isChoosing = false;
+        public event Action onConversationUpdated;
 
-        private void Awake() {
-            currentNode = currentDialogue.GetRootNode();
+        IEnumerator Start() {
+            yield return new WaitForSeconds(2.0f);
+            StartDialogue(testDialogue);
         }
 
-        // Update is called once per frame
-        void Update()
-        {
-            
+        public void StartDialogue(Dialogue newDialogue) {
+            currentDialogue = newDialogue;
+            currentNode = currentDialogue.GetRootNode();
+            onConversationUpdated();
+        }
+
+        public bool IsActive() {
+            return currentDialogue != null;
+        }
+
+        public bool IsChoosing() {
+            return isChoosing;
         }
 
         public string GetText() {
@@ -26,15 +39,28 @@ namespace Pokemon.Dialogue {
             return  currentNode.Text;
         }
 
-        public IEnumerable<string> GetChoices() {
-            yield return "I've lived here for all my life";
-            yield return "I came here from Nowhere";
+        public IEnumerable<DialogueNode> GetChoices() {
+            return currentDialogue.GetPlayerChildren(currentNode);
+        }
+
+        public void SelectChoice(DialogueNode chosenNode) {
+            currentNode = chosenNode;
+            isChoosing = false;
+            Next();
         }
 
         public void Next() {
-            DialogueNode[] children = currentDialogue.GetAllChildren(currentNode).ToArray();
-            int randomIndex = Random.Range(0, children.Count());
+            int numPlayerResponses = currentDialogue.GetPlayerChildren(currentNode).Count();
+            if(numPlayerResponses > 0) {
+                isChoosing = true;
+                onConversationUpdated();
+                return;
+            }
+
+            DialogueNode[] children = currentDialogue.GetAIChildren(currentNode).ToArray();
+            int randomIndex = UnityEngine.Random.Range(0, children.Count());
             currentNode = children[randomIndex];
+            onConversationUpdated();
         }
 
         public bool HasNext() {

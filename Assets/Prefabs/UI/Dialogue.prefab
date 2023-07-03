@@ -1028,6 +1028,7 @@ MonoBehaviour:
   AIText: {fileID: 5136144404771643951}
   nextButton: {fileID: 1304421803916269353}
   choiceRoot: {fileID: 7563352950568045135}
+  AIResponse: {fileID: 5763946317990783483}
   choicePrefab: {fileID: 4871363527066709672, guid: e09ae6c108625b342ac9f277bdc18fdb, type: 3}
 --- !u!1001 &1015720626715688850
 PrefabInstance:

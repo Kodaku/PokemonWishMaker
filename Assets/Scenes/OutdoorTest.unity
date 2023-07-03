@@ -28098,6 +28098,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6910078423741152951, guid: 213d5d0d345090648a81c55b0c0975a6, type: 3}
+      propertyPath: testDialogue
+      value: 
+      objectReference: {fileID: 11400000, guid: 734121471018c2c488cda827d1299e46, type: 2}
+    - target: {fileID: 6910078423741152951, guid: 213d5d0d345090648a81c55b0c0975a6, type: 3}
       propertyPath: currentDialogue
       value: 
       objectReference: {fileID: 11400000, guid: 734121471018c2c488cda827d1299e46, type: 2}
