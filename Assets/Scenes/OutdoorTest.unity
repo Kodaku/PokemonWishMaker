@@ -25009,6 +25009,7 @@ GameObject:
   - component: {fileID: 1398030067}
   - component: {fileID: 1398030066}
   - component: {fileID: 1398030065}
+  - component: {fileID: 1398030070}
   m_Layer: 0
   m_Name: OldMan (1)
   m_TagString: Untagged
@@ -25163,6 +25164,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1398030070
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1398030063}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c110ebe6a5f2bf44e907a2a86a818892, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogue: {fileID: 11400000, guid: 734121471018c2c488cda827d1299e46, type: 2}
 --- !u!1 &1452455005
 GameObject:
   m_ObjectHideFlags: 0

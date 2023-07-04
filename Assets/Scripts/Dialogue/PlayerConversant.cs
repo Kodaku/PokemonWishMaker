@@ -13,14 +13,21 @@ namespace Pokemon.Dialogue {
         bool isChoosing = false;
         public event Action onConversationUpdated;
 
-        IEnumerator Start() {
-            yield return new WaitForSeconds(2.0f);
-            StartDialogue(testDialogue);
-        }
+        // IEnumerator Start() {
+        //     yield return new WaitForSeconds(2.0f);
+        //     StartDialogue(testDialogue);
+        // }
 
         public void StartDialogue(Dialogue newDialogue) {
             currentDialogue = newDialogue;
             currentNode = currentDialogue.GetRootNode();
+            onConversationUpdated();
+        }
+
+        public void Quit() {
+            currentDialogue = null;
+            currentNode = null;
+            isChoosing = false;
             onConversationUpdated();
         }
 

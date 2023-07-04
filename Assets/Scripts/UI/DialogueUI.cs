@@ -20,17 +20,13 @@ namespace Pokemon.UI
         {
             playerConversant = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerConversant>();
             playerConversant.onConversationUpdated += UpdateUI;
-            nextButton.onClick.AddListener(Next);
+            nextButton.onClick.AddListener(() => playerConversant.Next());
 
             UpdateUI();
         }
 
-        private void Next() {
-
-            playerConversant.Next();
-        }
-
         private void UpdateUI() {
+            gameObject.SetActive(playerConversant.IsActive());
             if (!playerConversant.IsActive()) {
                 return;
             }
