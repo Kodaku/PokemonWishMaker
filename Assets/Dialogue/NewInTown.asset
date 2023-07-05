@@ -22,6 +22,8 @@ MonoBehaviour:
     y: 412
     width: 200
     height: 100
+  onEnterAction: 
+  onExitAction: 
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -42,6 +44,7 @@ MonoBehaviour:
   - {fileID: 6630406151386387424}
   - {fileID: 4816162777294076178}
   - {fileID: 1326317283243325143}
+  - {fileID: 1996401693362662441}
   newNodeOffset: {x: 250, y: 0}
 --- !u!114 &1326317283243325143
 MonoBehaviour:
@@ -57,13 +60,39 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isPlayerSpeaking: 1
   text: I haven't heard about any danger
-  children: []
+  children:
+  - 9a1a7700-feed-4af7-8ff7-38880d8e6e11
   rect:
     serializedVersion: 2
     x: 806
     y: 545
     width: 200
     height: 100
+  onEnterAction: 
+  onExitAction: 
+--- !u!114 &1996401693362662441
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fb50f0055ef1894aa314ad24a7679f8, type: 3}
+  m_Name: 9a1a7700-feed-4af7-8ff7-38880d8e6e11
+  m_EditorClassIdentifier: 
+  isPlayerSpeaking: 0
+  text: Oh, I see...
+  children: []
+  rect:
+    serializedVersion: 2
+    x: 1077
+    y: 484
+    width: 200
+    height: 100
+  onEnterAction: 
+  onExitAction: Attack
 --- !u!114 &2437078727106947761
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -87,6 +116,8 @@ MonoBehaviour:
     y: 285
     width: 200
     height: 100
+  onEnterAction: TestRootNode
+  onExitAction: 
 --- !u!114 &2674119286935395407
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -108,6 +139,8 @@ MonoBehaviour:
     y: 180
     width: 200
     height: 100
+  onEnterAction: 
+  onExitAction: Attack
 --- !u!114 &4816162777294076178
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -122,13 +155,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isPlayerSpeaking: 1
   text: Did I say Nowhere? I'm actually from Karakura
-  children: []
+  children:
+  - 9a1a7700-feed-4af7-8ff7-38880d8e6e11
   rect:
     serializedVersion: 2
     x: 796
     y: 412
     width: 200
     height: 100
+  onEnterAction: 
+  onExitAction: 
 --- !u!114 &6630406151386387424
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -152,6 +188,8 @@ MonoBehaviour:
     y: 412
     width: 200
     height: 100
+  onEnterAction: 
+  onExitAction: 
 --- !u!114 &7340751478873529808
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -174,3 +212,5 @@ MonoBehaviour:
     y: 180
     width: 200
     height: 100
+  onEnterAction: 
+  onExitAction: 

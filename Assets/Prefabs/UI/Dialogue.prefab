@@ -1030,6 +1030,7 @@ MonoBehaviour:
   choiceRoot: {fileID: 7563352950568045135}
   AIResponse: {fileID: 5763946317990783483}
   choicePrefab: {fileID: 4871363527066709672, guid: e09ae6c108625b342ac9f277bdc18fdb, type: 3}
+  conversantName: {fileID: 3717998552931920194}
 --- !u!1001 &1015720626715688850
 PrefabInstance:
   m_ObjectHideFlags: 0

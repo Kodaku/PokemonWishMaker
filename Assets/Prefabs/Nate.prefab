@@ -204,4 +204,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1185404556cf46a4498f1d1d63022bf3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentDialogue: {fileID: 11400000, guid: d4b4a8c7d7ebaed4c96f46a9fa0e07e7, type: 2}
+  playerName: Nate

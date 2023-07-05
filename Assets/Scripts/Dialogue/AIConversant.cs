@@ -6,9 +6,12 @@ namespace Pokemon.Dialogue {
     public class AIConversant : MonoBehaviour
     {
         [SerializeField] Dialogue dialogue;
+        [SerializeField] string npcName;
         Collider2D aiCollider;
         bool isCollidingWithPlayer = false;
         bool isShowingDialogue = false;
+
+        public string NPCName => npcName;
 
         private void Start() {
             aiCollider = GetComponent<Collider2D>();
@@ -24,7 +27,7 @@ namespace Pokemon.Dialogue {
 
         private void Update() {
             if(Input.GetKeyDown(KeyCode.A) && isCollidingWithPlayer && !isShowingDialogue) {
-                GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerConversant>().StartDialogue(dialogue);
+                GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerConversant>().StartDialogue(this, dialogue);
                 isShowingDialogue = true;
             }
         }

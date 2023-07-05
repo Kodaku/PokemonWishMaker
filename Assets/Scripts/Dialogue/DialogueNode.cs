@@ -15,6 +15,8 @@ namespace Pokemon.Dialogue
         private List<string> children = new List<string>();
         [SerializeField]
         private Rect rect = new Rect(0, 0, 200, 100);
+        [SerializeField] string onEnterAction;
+        [SerializeField] string onExitAction;
 
         public string Text => text;
 
@@ -23,6 +25,10 @@ namespace Pokemon.Dialogue
         public Rect Rect => rect;
 
         public bool IsPlayerSpeaking => isPlayerSpeaking;
+
+        public string OnEnterAction => onEnterAction;
+
+        public string OnExitAction => onExitAction;
 
 # if UNITY_EDITOR
         public void SetRect(Rect newRect) {

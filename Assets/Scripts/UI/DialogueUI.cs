@@ -15,6 +15,7 @@ namespace Pokemon.UI
         [SerializeField] Transform choiceRoot;
         [SerializeField] GameObject AIResponse;
         [SerializeField] GameObject choicePrefab;
+        [SerializeField] TextMeshProUGUI conversantName;
         // Start is called before the first frame update
         void Start()
         {
@@ -30,6 +31,7 @@ namespace Pokemon.UI
             if (!playerConversant.IsActive()) {
                 return;
             }
+            conversantName.text = playerConversant.GetCurrentConversantName();
             AIResponse.SetActive(!playerConversant.IsChoosing());
             choiceRoot.gameObject.SetActive(playerConversant.IsChoosing());
             // Choosing
