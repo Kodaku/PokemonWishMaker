@@ -9,13 +9,15 @@ namespace Pokemon.Dialogue {
         [SerializeField] string npcName;
         Collider2D aiCollider;
         bool isCollidingWithPlayer = false;
-        bool isShowingDialogue = false;
+        public static bool isShowingDialogue = false;
+        private PlayerConversant playerConversant;
 
         public string NPCName => npcName;
 
         private void Start() {
             aiCollider = GetComponent<Collider2D>();
             isCollidingWithPlayer = false;
+            playerConversant = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerConversant>();
         }
 
         private void OnCollisionEnter2D(Collision2D other) {
@@ -27,8 +29,16 @@ namespace Pokemon.Dialogue {
 
         private void Update() {
             if(Input.GetKeyDown(KeyCode.A) && isCollidingWithPlayer && !isShowingDialogue) {
-                GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerConversant>().StartDialogue(this, dialogue);
+                playerConversant.StartDialogue(this, dialogue);
                 isShowingDialogue = true;
+            }
+            else if (Input.GetKeyDown(KeyCode.A) && isCollidingWithPlayer && isShowingDialogue) {
+                if (!playerConversant.HasNext()) {
+                    playerConversant.Quit();
+                    isShowingDialogue = false;
+                    return;
+                }
+                playerConversant.Next();
             }
         }
     }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Pokemon.Dialogue;
 
 public class NPCPathFollowing : MonoBehaviour
 {
@@ -30,6 +31,9 @@ public class NPCPathFollowing : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (AIConversant.isShowingDialogue) {
+            return;
+        }
         Walk();
 
         if (isWalking && !isStatic) {

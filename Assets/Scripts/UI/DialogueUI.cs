@@ -21,7 +21,7 @@ namespace Pokemon.UI
         {
             playerConversant = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerConversant>();
             playerConversant.onConversationUpdated += UpdateUI;
-            nextButton.onClick.AddListener(() => playerConversant.Next());
+            // nextButton.onClick.AddListener(() => playerConversant.Next());
 
             UpdateUI();
         }
@@ -42,7 +42,7 @@ namespace Pokemon.UI
             // Responding
             else {
                 AIText.text = playerConversant.GetText();
-                nextButton.gameObject.SetActive(playerConversant.HasNext());
+                // nextButton.gameObject.SetActive(playerConversant.HasNext());
             }
         }
 
