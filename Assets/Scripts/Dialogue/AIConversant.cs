@@ -30,6 +30,9 @@ namespace Pokemon.Dialogue {
         private void Update() {
             if(Input.GetKeyDown(KeyCode.A) && isCollidingWithPlayer && !isShowingDialogue) {
                 playerConversant.StartDialogue(this, dialogue);
+                Vector3 playerDirection = playerConversant.gameObject.GetComponent<PlayerMovement>().FacingDirection;
+                Debug.Log(playerDirection);
+                GetComponent<NPCPathFollowing>().ForceChangeDirection(playerDirection);
                 isShowingDialogue = true;
             }
             else if (Input.GetKeyDown(KeyCode.A) && isCollidingWithPlayer && isShowingDialogue) {

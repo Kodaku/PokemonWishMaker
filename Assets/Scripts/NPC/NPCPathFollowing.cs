@@ -46,6 +46,17 @@ public class NPCPathFollowing : MonoBehaviour
         myAnimator.SetFloat("moveY", currentDirection.y);
     }
 
+    public void ForceChangeDirection(Vector2 playerDirection) {
+        if (playerDirection.x != 0.0f) {
+            currentDirection = new Vector2(-playerDirection.x, 0.0f);
+        }
+        else if(playerDirection.y != 0.0f) {
+            currentDirection = new Vector2(0.0f, -playerDirection.y);
+        }
+        myAnimator.SetFloat("moveX", currentDirection.x);
+        myAnimator.SetFloat("moveY", currentDirection.y);
+    }
+
     private void Walk() {
         GameObject currentNode = npcPath.CurrentNode;
         if (Vector3.Distance(transform.position, currentNode.transform.position) < 0.1f && !isStatic) {

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Pokemon.Dialogue;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -12,6 +13,9 @@ public class PlayerMovement : MonoBehaviour
     Animator myAnimator;
     bool isRunning  = false;
     bool isMoving;
+    Vector2 facingDirection;
+
+    public Vector2 FacingDirection => facingDirection;
     // Start is called before the first frame update
     void Awake()
     {
@@ -22,7 +26,7 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!MainMenuUI.IsGamePaused) {
+        if (!MainMenuUI.IsGamePaused && !AIConversant.isShowingDialogue) {
             Walk();
             Run();
             
@@ -40,6 +44,18 @@ public class PlayerMovement : MonoBehaviour
     void Walk() {
         if(!isRunning) {
             myRb.velocity = moveInput * walkSpeed;
+            if (myRb.velocity.x > 0) {
+                facingDirection = Vector2.right;
+            }
+            else if(myRb.velocity.x < 0) {
+                facingDirection = Vector2.left;
+            }
+            else if(myRb.velocity.y > 0) {
+                facingDirection = Vector2.up;
+            }
+            else if(myRb.velocity.y < 0) {
+                facingDirection = Vector2.down;
+            }
         }
     }
 
