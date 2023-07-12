@@ -4,17 +4,17 @@ using UnityEngine;
 
 public class SceneInfoManager
 {
-    public static Dictionary<string, SceneInfo> sceneInfoDict = new Dictionary<string, SceneInfo>();
+    public static Dictionary<string, GameInfo> sceneInfoDict = new Dictionary<string, GameInfo>();
 
-    public static void AddSceneInfo(string sceneName, SceneInfo sceneInfo) {
+    public static void AddSceneInfo(string sceneName, GameInfo sceneInfo) {
         sceneInfoDict.Add(sceneName, sceneInfo);
     }
 
-    public static SceneInfo GetSceneInfo(string sceneName) {
+    public static GameInfo GetSceneInfo(string sceneName) {
         return sceneInfoDict[sceneName];
     }
 
-    public static void UpdateSceneInfo(string sceneName, SceneInfo newSceneInfo) {
+    public static void UpdateSceneInfo(string sceneName, GameInfo newSceneInfo) {
         sceneInfoDict[sceneName] = newSceneInfo;
     }
 

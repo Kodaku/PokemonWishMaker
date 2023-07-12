@@ -16,21 +16,21 @@ public class ExitScene : MonoBehaviour
             if (SceneInfoManager.ContainsSceneInfo(sceneName)) {
                 // TextAsset textAsset = Resources.Load<TextAsset>(sceneName);
                 // SceneInfo sceneInfo = JsonUtility.FromJson<SceneInfo>(textAsset.text);
-                SceneInfo sceneInfo = SceneInfoManager.GetSceneInfo(sceneName);
+                GameInfo sceneInfo = SceneInfoManager.GetSceneInfo(sceneName);
                 sceneInfo.playerPositionX = thisSceneEntrance.transform.position.x;
                 sceneInfo.playerPositionY = thisSceneEntrance.transform.position.y;
 
                 SceneInfoManager.UpdateSceneInfo(sceneName, sceneInfo);
                 // AssetDatabase.ImportAsset("Assets/Resources/" + sceneName + ".txt");
                 if (SceneInfoManager.ContainsSceneInfo(nextSceneName)) {
-                    SceneInfo nextSceneInfo = SceneInfoManager.GetSceneInfo(nextSceneName);
+                    GameInfo nextSceneInfo = SceneInfoManager.GetSceneInfo(nextSceneName);
                     nextSceneInfo.playerPositionX = nextSceneEntrance.transform.position.x;
                     nextSceneInfo.playerPositionY = nextSceneEntrance.transform.position.y;
 
                     SceneInfoManager.UpdateSceneInfo(nextSceneName, nextSceneInfo);
                 }
                 else {
-                    SceneInfo nextSceneInfo = new SceneInfo();
+                    GameInfo nextSceneInfo = new GameInfo();
                     nextSceneInfo.playerPositionX = nextSceneEntrance.transform.position.x;
                     nextSceneInfo.playerPositionY = nextSceneEntrance.transform.position.y;
 

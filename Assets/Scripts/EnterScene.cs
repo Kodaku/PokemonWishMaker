@@ -12,7 +12,7 @@ public class EnterScene : MonoBehaviour
     private void Awake() {
         string sceneName = SceneManager.GetActiveScene().name;
         if (!SceneInfoManager.ContainsSceneInfo(sceneName)) {
-            SceneInfo sceneInfo = new SceneInfo();
+            GameInfo sceneInfo = new GameInfo();
             sceneInfo.playerPositionX = player.transform.position.x;
             sceneInfo.playerPositionY = player.transform.position.y;
             
@@ -20,7 +20,7 @@ public class EnterScene : MonoBehaviour
             // AssetDatabase.ImportAsset("Assets/Resources/" + SceneManager.GetActiveScene().name + ".txt");
         }
         else {
-            SceneInfo sceneInfo = SceneInfoManager.GetSceneInfo(sceneName);
+            GameInfo sceneInfo = SceneInfoManager.GetSceneInfo(sceneName);
             player.transform.position = new Vector2(sceneInfo.playerPositionX, sceneInfo.playerPositionY);
         }
     }
