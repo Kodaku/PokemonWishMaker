@@ -8,21 +8,21 @@ namespace Pokemon.SceneManagement
     public class NextSceneInfo
     {
         [SerializeField]
-        private string nextSceneName;
+        private string toSceneName;
         [SerializeField]
-        private GameObject nextSceneEntrance;
+        private GameObject toSceneEntrance;
 
-        public string NextSceneName => nextSceneName;
+        public string ToSceneName => toSceneName;
 
-        public GameObject NextSceneEntrance => nextSceneEntrance;
+        public GameObject ToSceneEntrance => toSceneEntrance;
 
-        public void SetNextSceneName(string newNextSceneName)
+        public void SetToSceneName(string newToSceneName)
         {
-            nextSceneName = newNextSceneName;
+            toSceneName = newToSceneName;
         }
-        public void SetNextSceneEntrance(GameObject newNextSceneEntrance)
+        public void SetToSceneEntrance(GameObject newToSceneEntrance)
         {
-            nextSceneEntrance = newNextSceneEntrance;
+            toSceneEntrance = newToSceneEntrance;
         }
     }
 }

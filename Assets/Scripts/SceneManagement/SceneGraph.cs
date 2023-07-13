@@ -21,21 +21,21 @@ namespace Pokemon.SceneManagement
             for(int i = 0; i < nodes.Count; i++)
             {
                 SceneGraphNode currentNode = nodes[i];
+                if (!IsCurrentNodesInList(currentNode, correctNodes))
+                {
+                    correctNodes.Add(currentNode);
+                }
                 for(int j = i + 1; j < nodes.Count; j++)
                 {
                     if (currentNode.SceneName == nodes[j].SceneName)
                     {
                         if (!IsCurrentNodesInList(currentNode, correctNodes))
                         {
-                            foreach(string previousSceneName in nodes[j].NextSceneEntrances.Keys)
+                            foreach(string previousSceneName in nodes[j].FromSceneToSceneDictionary.Keys)
                             {
-                                currentNode.AddSceneEntrance(previousSceneName, nodes[j].NextSceneEntrances[previousSceneName]);
+                                currentNode.AddSceneEntrance(previousSceneName, nodes[j].FromSceneToSceneDictionary[previousSceneName]);
                             }
                             correctNodes[i] = currentNode;
-                        }
-                        else
-                        {
-                            correctNodes.Add(currentNode);
                         }
                     }
                 }

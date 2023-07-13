@@ -14,9 +14,7 @@ namespace Pokemon.SceneManagement
         [SerializeField]
         private Rect rect = new Rect(0, 0, 200, 100);
         [SerializeField]
-        private GameObject thisSceneEntrance;
-        [SerializeField]
-        private Dictionary<string, NextSceneInfo> nextScenesEntrances = new Dictionary<string, NextSceneInfo>();
+        private StringNextSceneDictionary fromSceneToSceneDictionary = new StringNextSceneDictionary();
         private string previousSceneName;
 
         public string SceneName => sceneName;
@@ -27,13 +25,13 @@ namespace Pokemon.SceneManagement
 
         public string PreviousSceneName => previousSceneName;
 
-        public Dictionary<string, NextSceneInfo> NextSceneEntrances => nextScenesEntrances;
+        public StringNextSceneDictionary FromSceneToSceneDictionary => fromSceneToSceneDictionary;
 
         public void AddSceneEntrance(string sceneName, NextSceneInfo nextSceneInfo)
         {
-            if (!nextScenesEntrances.ContainsKey(sceneName))
+            if (!fromSceneToSceneDictionary.ContainsKey(sceneName))
             {
-                nextScenesEntrances.Add(sceneName, nextSceneInfo);
+                fromSceneToSceneDictionary.Add(sceneName, nextSceneInfo);
             }
         }
 
