@@ -8,32 +8,32 @@ namespace Pokemon.SceneManagement
     public class SceneGraphNode : ScriptableObject
     {
         [SerializeField]
-        private string sceneName;
+        private SceneNames sceneName;
         [SerializeField]
         private List<string> children = new List<string>();
         [SerializeField]
         private Rect rect = new Rect(0, 0, 200, 100);
-        [SerializeField]
-        private StringNextSceneDictionary fromSceneToSceneDictionary = new StringNextSceneDictionary();
-        private string previousSceneName;
+        // [SerializeField]
+        // private StringNextSceneDictionary fromSceneToSceneDictionary = new StringNextSceneDictionary();
+        // private string previousSceneName;
 
-        public string SceneName => sceneName;
+        public SceneNames SceneName => sceneName;
 
         public List<string> Children => children;
 
         public Rect Rect => rect;
 
-        public string PreviousSceneName => previousSceneName;
+        // public string PreviousSceneName => previousSceneName;
 
-        public StringNextSceneDictionary FromSceneToSceneDictionary => fromSceneToSceneDictionary;
+        // public StringNextSceneDictionary FromSceneToSceneDictionary => fromSceneToSceneDictionary;
 
-        public void AddSceneEntrance(string sceneName, NextSceneInfo nextSceneInfo)
-        {
-            if (!fromSceneToSceneDictionary.ContainsKey(sceneName))
-            {
-                fromSceneToSceneDictionary.Add(sceneName, nextSceneInfo);
-            }
-        }
+        // public void AddSceneEntrance(string sceneName, NextSceneInfo nextSceneInfo)
+        // {
+        //     if (!fromSceneToSceneDictionary.ContainsKey(sceneName))
+        //     {
+        //         fromSceneToSceneDictionary.Add(sceneName, nextSceneInfo);
+        //     }
+        // }
 
 # if UNITY_EDITOR
         public void SetRect(Rect newRect) {
@@ -42,7 +42,9 @@ namespace Pokemon.SceneManagement
             EditorUtility.SetDirty(this);
         }
 
-        public void SetSceneName(string newSceneName) {
+        public void SetSceneName(SceneNames newSceneName)
+        {
+
             if (newSceneName != sceneName) {
                 Undo.RecordObject(this, "Update SceneGraphNode Scene Name");
                 sceneName = newSceneName;

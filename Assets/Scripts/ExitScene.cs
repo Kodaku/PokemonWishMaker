@@ -2,18 +2,27 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Pokemon.SceneManagement;
 
 public class ExitScene : MonoBehaviour
 {
-    [SerializeField] string nextSceneName;
+    [SerializeField] SceneNames nextScene;
     [SerializeField] GameObject thisSceneEntrance;
     [SerializeField] GameObject nextSceneEntrance;
+    // This is just to verify that the next scene actually exists
+    private ScenesManager scenesManager;
+
+    private void Start()
+    {
+        scenesManager = GameObject.FindGameObjectWithTag("ScenesManager").GetComponent<ScenesManager>();
+    }
 
     private void OnTriggerEnter2D(Collider2D other) {
         if (other.tag == "Player") {
-            string sceneName = SceneManager.GetActiveScene().name;
+            string sceneName = ScenesMapping.FromSceneNameEnumToSceneName(scenesManager.GetThisSceneName());
             
             if (SceneInfoManager.ContainsSceneInfo(sceneName)) {
+                string nextSceneName = ScenesMapping.FromSceneNameEnumToSceneName(nextScene);
                 // TextAsset textAsset = Resources.Load<TextAsset>(sceneName);
                 // SceneInfo sceneInfo = JsonUtility.FromJson<SceneInfo>(textAsset.text);
                 GameInfo sceneInfo = SceneInfoManager.GetSceneInfo(sceneName);
@@ -36,7 +45,11 @@ public class ExitScene : MonoBehaviour
 
                     SceneInfoManager.AddSceneInfo(nextSceneName, nextSceneInfo);
                 }
-                SceneManager.LoadScene(nextSceneName);
+                SceneNames correctNextSceneName = scenesManager.GetCorrectNextSceneName(nextScene);
+                if (correctNextSceneName != SceneNames.DEFAULT)
+                {
+                    SceneManager.LoadScene(nextSceneName);
+                }
             }
         }
     }

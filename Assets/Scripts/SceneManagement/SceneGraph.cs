@@ -17,45 +17,45 @@ namespace Pokemon.SceneManagement
         // TODO: DA RIVEDERE
         public IEnumerable<SceneGraphNode> GetAllNodes()
         {
-            List<SceneGraphNode> correctNodes = new List<SceneGraphNode>();
-            for(int i = 0; i < nodes.Count; i++)
-            {
-                SceneGraphNode currentNode = nodes[i];
-                if (!IsCurrentNodesInList(currentNode, correctNodes))
-                {
-                    correctNodes.Add(currentNode);
-                }
-                for(int j = i + 1; j < nodes.Count; j++)
-                {
-                    if (currentNode.SceneName == nodes[j].SceneName)
-                    {
-                        if (!IsCurrentNodesInList(currentNode, correctNodes))
-                        {
-                            foreach(string previousSceneName in nodes[j].FromSceneToSceneDictionary.Keys)
-                            {
-                                currentNode.AddSceneEntrance(previousSceneName, nodes[j].FromSceneToSceneDictionary[previousSceneName]);
-                            }
-                            correctNodes[i] = currentNode;
-                        }
-                    }
-                }
-            }
-            return correctNodes;
-            // return nodes;
+            // List<SceneGraphNode> correctNodes = new List<SceneGraphNode>();
+            // for(int i = 0; i < nodes.Count; i++)
+            // {
+            //     SceneGraphNode currentNode = nodes[i];
+            //     if (!IsCurrentNodesInList(currentNode, correctNodes))
+            //     {
+            //         correctNodes.Add(currentNode);
+            //     }
+            //     for(int j = i + 1; j < nodes.Count; j++)
+            //     {
+            //         if (currentNode.SceneName == nodes[j].SceneName)
+            //         {
+            //             if (!IsCurrentNodesInList(currentNode, correctNodes))
+            //             {
+            //                 foreach(string previousSceneName in nodes[j].FromSceneToSceneDictionary.Keys)
+            //                 {
+            //                     currentNode.AddSceneEntrance(previousSceneName, nodes[j].FromSceneToSceneDictionary[previousSceneName]);
+            //                 }
+            //                 correctNodes[i] = currentNode;
+            //             }
+            //         }
+            //     }
+            // }
+            // return correctNodes;
+            return nodes;
         }
 
-        public bool IsCurrentNodesInList(SceneGraphNode currentNode, List<SceneGraphNode> correctNodes)
-        {
-            bool found = false;
-            foreach(SceneGraphNode sceneGraphNode in correctNodes)
-            {
-                if(sceneGraphNode.SceneName == currentNode.SceneName)
-                {
-                    found = true;
-                }
-            }
-            return found;
-        }
+        // public bool IsCurrentNodesInList(SceneGraphNode currentNode, List<SceneGraphNode> correctNodes)
+        // {
+        //     bool found = false;
+        //     foreach(SceneGraphNode sceneGraphNode in correctNodes)
+        //     {
+        //         if(sceneGraphNode.SceneName == currentNode.SceneName)
+        //         {
+        //             found = true;
+        //         }
+        //     }
+        //     return found;
+        // }
 
         public IEnumerable<SceneGraphNode> GetAllChildren(SceneGraphNode parentNode) {
             foreach(string childID in parentNode.Children) {
@@ -65,7 +65,7 @@ namespace Pokemon.SceneManagement
             }
         }
 
-        public SceneGraphNode GetCurrentSceneGraphNode(string sceneName)
+        public SceneGraphNode GetCurrentSceneGraphNode(SceneNames sceneName)
         {
             foreach(SceneGraphNode sceneGraphNode in GetAllNodes())
             {

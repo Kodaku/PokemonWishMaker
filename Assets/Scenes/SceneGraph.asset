@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d121bddb4ad4922419e1556244f12254, type: 3}
   m_Name: 158215d6-5196-42fc-b162-94d7be186f26
   m_EditorClassIdentifier: 
-  sceneName: CityTest
+  sceneName: 2
   children: []
   rect:
     serializedVersion: 2
@@ -20,9 +20,6 @@ MonoBehaviour:
     y: 133
     width: 200
     height: 100
-  fromSceneToSceneDictionary:
-    m_keys: []
-    m_values: []
 --- !u!114 &-8657612498107127461
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -35,7 +32,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d121bddb4ad4922419e1556244f12254, type: 3}
   m_Name: afac4662-71ef-4216-8d15-24003f4c2681
   m_EditorClassIdentifier: 
-  sceneName: Gate
+  sceneName: 3
   children:
   - 158215d6-5196-42fc-b162-94d7be186f26
   rect:
@@ -44,12 +41,6 @@ MonoBehaviour:
     y: 132
     width: 200
     height: 100
-  fromSceneToSceneDictionary:
-    m_keys:
-    - OutdoorScene
-    m_values:
-    - toSceneName: CityTest
-      toSceneEntrance: {fileID: 0}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -80,7 +71,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d121bddb4ad4922419e1556244f12254, type: 3}
   m_Name: 1d4df5ab-ad91-487e-be3a-01d7de7042e6
   m_EditorClassIdentifier: 
-  sceneName: PokemonCenter
+  sceneName: 1
   children: []
   rect:
     serializedVersion: 2
@@ -88,12 +79,6 @@ MonoBehaviour:
     y: 3
     width: 200
     height: 100
-  fromSceneToSceneDictionary:
-    m_keys:
-    - OutdoorTest
-    m_values:
-    - toSceneName: OutdoorTest
-      toSceneEntrance: {fileID: 0}
 --- !u!114 &3263578474404648363
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -106,7 +91,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d121bddb4ad4922419e1556244f12254, type: 3}
   m_Name: 933fb6e3-7a5c-44e3-a8a1-b1fcbacc304c
   m_EditorClassIdentifier: 
-  sceneName: OutdoorTest
+  sceneName: 0
   children:
   - 1d4df5ab-ad91-487e-be3a-01d7de7042e6
   - afac4662-71ef-4216-8d15-24003f4c2681
@@ -116,6 +101,3 @@ MonoBehaviour:
     y: 202
     width: 200
     height: 100
-  fromSceneToSceneDictionary:
-    m_keys: []
-    m_values: []

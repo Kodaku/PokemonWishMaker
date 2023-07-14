@@ -172,8 +172,8 @@ namespace Pokemon.SceneManagement.Editor
             
             GUILayout.BeginArea(sceneGraphNode.Rect, style);
             
-            string newSceneName = EditorGUILayout.TextField(sceneGraphNode.SceneName);
-            sceneGraphNode.SetSceneName(newSceneName);
+            string newSceneName = EditorGUILayout.TextField(ScenesMapping.FromSceneNameEnumToSceneName(sceneGraphNode.SceneName));
+            sceneGraphNode.SetSceneName(ScenesMapping.FromSceneNameStringToSceneNameEnum(newSceneName));
 
             GUILayout.BeginHorizontal();
 
