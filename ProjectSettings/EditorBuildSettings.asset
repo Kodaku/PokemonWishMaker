@@ -11,5 +11,11 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/PokemonCenter.unity
     guid: 82cb2ed840cc9c743b9c1a312b61b6af
+  - enabled: 1
+    path: Assets/Scenes/Gate.unity
+    guid: b3645daf0aa85294f88a038ae4c3c9b3
+  - enabled: 1
+    path: Assets/Scenes/CityTest.unity
+    guid: e9c6ab954da167842950139885c35abc
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 2516c457bb41e3a4892c8be0f57c935d, type: 2}
