@@ -17,6 +17,11 @@ namespace Pokemon.Dialogue
             return nodes;
         }
 
+        public void SetNodes(List<DialogueNode> newNodes)
+        {
+            nodes = newNodes;
+        }
+
         public IEnumerable<DialogueNode> GetAllChildren(DialogueNode parentNode) {
             foreach(string childID in parentNode.Children) {
                 if (nodeLookup.ContainsKey(childID)) {

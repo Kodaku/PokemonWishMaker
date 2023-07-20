@@ -31,7 +31,15 @@ namespace Pokemon.UI
             if (!playerConversant.IsActive()) {
                 return;
             }
-            conversantName.text = playerConversant.GetCurrentConversantName() + ":";
+            string currentConversantName = playerConversant.GetCurrentConversantName();
+            if (currentConversantName.Length == 0)
+            {
+                conversantName.text = "";
+            }
+            else
+            {
+                conversantName.text = playerConversant.GetCurrentConversantName() + ":";
+            }
             AIResponse.SetActive(!playerConversant.IsChoosing());
             choiceRoot.gameObject.SetActive(playerConversant.IsChoosing());
             // Choosing

@@ -11,8 +11,11 @@ namespace Pokemon.Dialogue {
         Dialogue currentDialogue;
         DialogueNode currentNode = null;
         AIConversant currentConversant = null;
+        PickableItem itemConversant = null;
         bool isChoosing = false;
         public event Action onConversationUpdated;
+
+        public string PlayerName => playerName;
 
         // IEnumerator Start() {
         //     yield return new WaitForSeconds(2.0f);
@@ -23,7 +26,15 @@ namespace Pokemon.Dialogue {
             currentConversant = newConversant;
             currentDialogue = newDialogue;
             currentNode = currentDialogue.GetRootNode();
-            TriggerEnterAction();
+            // TriggerEnterAction();
+            onConversationUpdated();
+        }
+
+        public void StartDialogue(PickableItem newConversant, Dialogue newDialogue) {
+            itemConversant = newConversant;
+            currentDialogue = newDialogue;
+            currentNode = currentDialogue.GetRootNode();
+            // TriggerEnterAction();
             onConversationUpdated();
         }
 
@@ -31,14 +42,16 @@ namespace Pokemon.Dialogue {
             if(isChoosing) {
                 return playerName;
             }
-            else {
+            else if (currentConversant) {
                 return currentConversant.NPCName;
+            } else {
+                return "";
             }
         }
 
         public void Quit() {
             currentDialogue = null;
-            TriggerExitAction();
+            // TriggerExitAction();
             currentNode = null;
             isChoosing = false;
             onConversationUpdated();
@@ -65,7 +78,7 @@ namespace Pokemon.Dialogue {
 
         public void SelectChoice(DialogueNode chosenNode) {
             currentNode = chosenNode;
-            TriggerEnterAction();
+            // TriggerEnterAction();
             isChoosing = false;
             Next();
         }
@@ -74,16 +87,16 @@ namespace Pokemon.Dialogue {
             int numPlayerResponses = currentDialogue.GetPlayerChildren(currentNode).Count();
             if(numPlayerResponses > 0) {
                 isChoosing = true;
-                TriggerExitAction();
+                // TriggerExitAction();
                 onConversationUpdated();
                 return;
             }
 
             DialogueNode[] children = currentDialogue.GetAIChildren(currentNode).ToArray();
             int randomIndex = UnityEngine.Random.Range(0, children.Count());
-            TriggerExitAction();
+            // TriggerExitAction();
             currentNode = children[randomIndex];
-            TriggerEnterAction();
+            // TriggerEnterAction();
             onConversationUpdated();
         }
 

@@ -21,7 +21,6 @@ public class EnterScene : MonoBehaviour
         }
         else {
             GameInfo sceneInfo = SceneInfoManager.GetSceneInfo(sceneName);
-            Debug.Log(sceneInfo.playerPositionX + " - " + sceneInfo.playerPositionY);
             player.transform.position = new Vector2(sceneInfo.playerPositionX, sceneInfo.playerPositionY);
         }
     }
