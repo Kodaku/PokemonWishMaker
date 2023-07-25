@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class PlayerBag : MonoBehaviour
 {
-    private Dictionary<ItemType, Dictionary<string, List<ItemSO>>> playerItems;
+    [SerializeField] private SerializableDictionary<ItemType, StringItemsDictionary> playerItems;
     // Start is called before the first frame update
     void Start()
     {
-        playerItems = new Dictionary<ItemType, Dictionary<string, List<ItemSO>>>();
+        playerItems = new SerializableDictionary<ItemType, StringItemsDictionary>();
     }
+
+    public SerializableDictionary<ItemType, StringItemsDictionary> PlayerItems => playerItems;
 
     public void AddItemToBag(ItemSO itemSO)
     {
@@ -17,7 +19,7 @@ public class PlayerBag : MonoBehaviour
         {
             playerItems.Add(itemSO.ItemType, new Dictionary<string, List<ItemSO>>());
         }
-        Dictionary<string, List<ItemSO>> itemsOfType = playerItems[itemSO.ItemType];
+        StringItemsDictionary itemsOfType = playerItems[itemSO.ItemType];
         if (!itemsOfType.ContainsKey(itemSO.ItemName))
         {
             itemsOfType.Add(itemSO.ItemName, new List<ItemSO>());

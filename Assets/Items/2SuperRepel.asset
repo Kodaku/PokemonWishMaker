@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5e20429fbf488104f82969b3d106d030, type: 3}
-  m_Name: Potion
+  m_Name: 2SuperRepel
   m_EditorClassIdentifier: 
-  itemName: Potion
-  itemDescription: A potion
-  itemType: 1
-  itemImage: {fileID: 21300000, guid: 1c848cd2132338843ae88743c42d8247, type: 3}
+  itemName: Super Repel
+  itemDescription: "Repels pok\xE9mons for 200 steps"
+  itemType: 0
+  itemImage: {fileID: 21300000, guid: 482653fc111e9be46b942b086e43dc75, type: 3}
