@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e20429fbf488104f82969b3d106d030, type: 3}
   m_Name: 295TM08
   m_EditorClassIdentifier: 
-  itemName: Potion
-  itemDescription: A potion
-  itemType: 1
-  itemImage: {fileID: 21300000, guid: 1c848cd2132338843ae88743c42d8247, type: 3}
+  itemName: Bulk Up
+  itemDescription: The user tenses its muscles to bulk up its body, boosting both
+    its Attack and Defense stats.
+  itemType: 2
+  itemImage: {fileID: 21300000, guid: 8f7fa258b6cd53d4d9b2619e2169a84a, type: 3}

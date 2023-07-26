@@ -10,9 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5e20429fbf488104f82969b3d106d030, type: 3}
-  m_Name: 195Adamasfera
+  m_Name: 197GriseusOrb
   m_EditorClassIdentifier: 
-  itemName: Potion
-  itemDescription: A potion
-  itemType: 1
-  itemImage: {fileID: 21300000, guid: 1c848cd2132338843ae88743c42d8247, type: 3}
+  itemName: Griseus Orb
+  itemDescription: A glowing orb to be held by Giratina. It boosts the power of Dragon-
+    and Ghost-type moves.
+  itemType: 0
+  itemImage: {fileID: 21300000, guid: 4dad6f7b2dd438d488fcef9d00c361e0, type: 3}

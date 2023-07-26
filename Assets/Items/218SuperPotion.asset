@@ -10,9 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5e20429fbf488104f82969b3d106d030, type: 3}
-  m_Name: 391Baccapesca
+  m_Name: 218SuperPotion
   m_EditorClassIdentifier: 
-  itemName: Potion
-  itemDescription: A potion
+  itemName: Super Potion
+  itemDescription: "A spray-type medicine for wounds. It restores the HP of one Pok\xE9mon
+    by 50 points."
   itemType: 1
-  itemImage: {fileID: 21300000, guid: 1c848cd2132338843ae88743c42d8247, type: 3}
+  itemImage: {fileID: 21300000, guid: ed30e679da32ec14d9cc5b08f220a5d2, type: 3}

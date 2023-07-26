@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e20429fbf488104f82969b3d106d030, type: 3}
   m_Name: 504AmoVecchio
   m_EditorClassIdentifier: 
-  itemName: Potion
-  itemDescription: A potion
-  itemType: 1
-  itemImage: {fileID: 21300000, guid: 1c848cd2132338843ae88743c42d8247, type: 3}
+  itemName: Old Rod
+  itemDescription: "An old and beat-up fishing rod. Use it by any body of water to
+    fish for wild aquatic Pok\xE9mon."
+  itemType: 4
+  itemImage: {fileID: 21300000, guid: cebf57c0a47cb54468c64e8c8ceca8bf, type: 3}

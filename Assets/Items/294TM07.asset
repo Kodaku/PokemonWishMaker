@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e20429fbf488104f82969b3d106d030, type: 3}
   m_Name: 294TM07
   m_EditorClassIdentifier: 
-  itemName: Potion
-  itemDescription: A potion
-  itemType: 1
-  itemImage: {fileID: 21300000, guid: 1c848cd2132338843ae88743c42d8247, type: 3}
+  itemName: Hail
+  itemDescription: "The user summons a hailstorm lasting five turns. It damages all
+    Pok\xE9mon except the Ice type."
+  itemType: 2
+  itemImage: {fileID: 21300000, guid: 6939ca1ce6ad1734a9d57855fe6d397f, type: 3}

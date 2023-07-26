@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5e20429fbf488104f82969b3d106d030, type: 3}
-  m_Name: 389Baccaliegia
+  m_Name: 389CheriBerry
   m_EditorClassIdentifier: 
-  itemName: Potion
-  itemDescription: A potion
-  itemType: 1
-  itemImage: {fileID: 21300000, guid: 1c848cd2132338843ae88743c42d8247, type: 3}
+  itemName: Cheri Berry
+  itemDescription: "If held by a Pok\xE9mon, it recovers from paralysis."
+  itemType: 3
+  itemImage: {fileID: 21300000, guid: 9d85dc2381f9a5f4c8121646695d093f, type: 3}

@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: 2SuperRepel
   m_EditorClassIdentifier: 
   itemName: Super Repel
-  itemDescription: "Repels pok\xE9mons for 200 steps"
+  itemDescription: "An item that prevents weak wild Pok\xE9mon from appearing for
+    200 steps after its use."
   itemType: 0
   itemImage: {fileID: 21300000, guid: 482653fc111e9be46b942b086e43dc75, type: 3}
