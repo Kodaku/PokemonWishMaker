@@ -3,4 +3,4 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class StringItemsDictionary : SerializableDictionary<string, List<ItemSO>, ItemsListStorage> {}
+public class StringItemsDictionary : SerializableDictionary<ItemType, List<ItemSO>, ItemsListStorage> {}
